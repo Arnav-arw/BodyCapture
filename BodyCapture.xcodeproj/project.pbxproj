@@ -15,6 +15,7 @@
 		6A16AE5D289B8D080026EAC9 /* SkeletonJoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A16AE5C289B8D080026EAC9 /* SkeletonJoint.swift */; };
 		6A16AE60289B8D470026EAC9 /* SkeletonBone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A16AE5F289B8D470026EAC9 /* SkeletonBone.swift */; };
 		6A16AE62289B8E040026EAC9 /* Bones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A16AE61289B8E040026EAC9 /* Bones.swift */; };
+		6A41439728A2AF0300A31494 /* BodySkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A41439628A2AF0300A31494 /* BodySkeleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		6A16AE5C289B8D080026EAC9 /* SkeletonJoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonJoint.swift; sourceTree = "<group>"; };
 		6A16AE5F289B8D470026EAC9 /* SkeletonBone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBone.swift; sourceTree = "<group>"; };
 		6A16AE61289B8E040026EAC9 /* Bones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bones.swift; sourceTree = "<group>"; };
+		6A41439628A2AF0300A31494 /* BodySkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodySkeleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		6A16AE47289B8B3B0026EAC9 /* BodyCapture */ = {
 			isa = PBXGroup;
 			children = (
+				6A41439528A2AEF600A31494 /* ViewModel */,
 				6A16AE5B289B8CFE0026EAC9 /* Models */,
 				6A16AE58289B8CAD0026EAC9 /* Views */,
 				6A16AE48289B8B3B0026EAC9 /* BodyCaptureApp.swift */,
@@ -93,6 +96,14 @@
 				6A16AE5F289B8D470026EAC9 /* SkeletonBone.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6A41439528A2AEF600A31494 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6A41439628A2AF0300A31494 /* BodySkeleton.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			files = (
 				6A16AE4B289B8B3B0026EAC9 /* ContentView.swift in Sources */,
 				6A16AE60289B8D470026EAC9 /* SkeletonBone.swift in Sources */,
+				6A41439728A2AF0300A31494 /* BodySkeleton.swift in Sources */,
 				6A16AE49289B8B3B0026EAC9 /* BodyCaptureApp.swift in Sources */,
 				6A16AE57289B8C0C0026EAC9 /* ARViewContainer.swift in Sources */,
 				6A16AE5D289B8D080026EAC9 /* SkeletonJoint.swift in Sources */,
