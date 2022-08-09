@@ -13,7 +13,7 @@ struct SkeletonBone {
     var toJoint: SkeletonJoint
     
     var centerPosition: SIMD3<Float> {
-        [(fromJoint.position.x + fromJoint.position.y)/2, (fromJoint.position.y + fromJoint.position.y)/2, (fromJoint.position.z + fromJoint.position.z)/2]
+        [(fromJoint.position.x + toJoint.position.x)/2, (fromJoint.position.y + toJoint.position.y)/2, (fromJoint.position.z + toJoint.position.z)/2]
     }
     
     var length: Float {

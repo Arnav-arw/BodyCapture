@@ -24,7 +24,7 @@ class BodySkeleton: Entity {
             switch jointName {
                 case "neck_1_joint","neck_2_joint", "neck_3_joint", "neck_4_joint", "head_joint", "left_shoulder_1_joint", "right_shoulder_1_joint":
                     jointRadius *= 0.5
-                case "jaw_joint", "chin_joint", "left_eye _joint", "left_eyeLowerLid_joint", "left_eyeUpperLid_joint", "left_eyeball_joint", "nose_joint", "right_eye_joint", "right_eyeLowerLid_joint", "right_eyeUpperLid_joint", "right _eyeball_joint":
+                case "jaw_joint", "chin_joint", "left_eye_joint", "left_eyeLowerLid_joint", "left_eyeUpperLid_joint", "left_eyeball_joint", "nose_joint", "right_eye_joint", "right_eyeLowerLid_joint", "right_eyeUpperLid_joint", "right_eyeball_joint":
                     jointRadius *= 0.2
                     jointColor = .yellow
                 case _ where jointName.hasPrefix("spine_"):
@@ -54,15 +54,16 @@ class BodySkeleton: Entity {
             bones[bone.name] = boneEntity
             self.addChild(boneEntity)
         }
+        
     }
     
-    required init() {
+     required init() {
         fatalError("DEBUG: init() has not been implemented")
     }
     
     private func createjoint(radius: Float, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateSphere(radius: radius)
-        let material = SimpleMaterial.init(color: color, roughness: 0.8, isMetallic: false)
+        let material = SimpleMaterial(color: color, roughness: 0.8, isMetallic: false)
         let entity = ModelEntity(mesh: mesh, materials: [material])
         return entity
     }
@@ -89,20 +90,20 @@ class BodySkeleton: Entity {
     
     private func createBoneEntity(for skeletonBone: SkeletonBone, diameter: Float = 0.04, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateBox(size: [diameter, diameter, skeletonBone.length], cornerRadius: diameter/2)
-        let material = SimpleMaterial.init(color: color, roughness: 0.5, isMetallic: true)
+        let material = SimpleMaterial(color: color, roughness: 0.5, isMetallic: true)
         let entity = ModelEntity(mesh: mesh, materials: [material])
         return entity
     }
     
-    private func update(with bodyAnchor: ARBodyAnchor) {
+    func update(with bodyAnchor: ARBodyAnchor) {
         let rootPosition = simd_make_float3(bodyAnchor.transform.columns.3)
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             if let jointEntity = joints[jointName],
-               let joinEntityTransform = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: jointName)) {
-                let jointEntityOffsetFromRoot = simd_make_float3(joinEntityTransform.columns.3)
+               let jointEntityTransform = bodyAnchor.skeleton.modelTransform(for: ARSkeleton.JointName(rawValue: jointName)) {
+                let jointEntityOffsetFromRoot = simd_make_float3(jointEntityTransform.columns.3)
                 jointEntity.position = jointEntityOffsetFromRoot + rootPosition
-                jointEntity.orientation = Transform(matrix: joinEntityTransform).rotation
+                jointEntity.orientation = Transform(matrix: jointEntityTransform).rotation
             }
         }
         
@@ -111,7 +112,7 @@ class BodySkeleton: Entity {
                   let skeletonBone = createSkeletonBone(bone: bone, bodyAnchor: bodyAnchor)
             else { continue }
             entity.position = skeletonBone.centerPosition
-            entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.fromJoint.position, relativeTo: nil)
+            entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.centerPosition, relativeTo: nil)
         }
     }
     
